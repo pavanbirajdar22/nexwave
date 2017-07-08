@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Layout resource="/hib-v1/src/main/java/hibernate.cfg.xml">
+ <TreeFormPage>
+  <Memento type="FileHibernate3">
+   <Memento collapsed="false" type="File Hibernate 3.0"/>
+   <Memento collapsed="false" type="Advanced"/>
+   <Memento collapsed="false" type="Meta"/>
+   <Memento collapsed="false" type="Types"/>
+   <Memento collapsed="false" type="Imports"/>
+   <Memento collapsed="false" type="Classes"/>
+   <Memento collapsed="false" type="Queries"/>
+   <Memento collapsed="false" type="Filters"/>
+  </Memento>
+  <Memento type="%No text%">
+   <Memento collapsed="false" type="Classes"/>
+  </Memento>
+  <Memento type="Hibernate3Class">
+   <Memento collapsed="false" type="Class"/>
+   <Memento collapsed="false" type="Properties"/>
+   <Memento collapsed="false" type="Subclasses"/>
+   <Memento collapsed="false" type="Meta"/>
+   <Memento collapsed="false" type="Filters"/>
+   <Memento collapsed="false" type="Synchronize"/>
+   <Memento collapsed="false" type="Advanced"/>
+  </Memento>
+  <Memento type="FileHibConfig3">
+   <Memento type="File Hibernate Configuration 3.0"/>
+  </Memento>
+  <Memento type="HibConfig3SessionFactory">
+   <Memento type="Session Factory"/>
+   <Memento type="Properties"/>
+   <Memento type="Mappings"/>
+  </Memento>
+  <Memento type="">
+   <Memento type="Properties Editor"/>
+  </Memento>
+ </TreeFormPage>
+</Layout>

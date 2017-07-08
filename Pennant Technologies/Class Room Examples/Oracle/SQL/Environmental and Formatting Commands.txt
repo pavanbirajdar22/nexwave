@@ -1,0 +1,500 @@
+Environmental Commands:
+--------------------------------------
+The environment control commands are used to set the system parameters. The SET and SHOW commands are used to control these parameters. The SET command is used with an extensive number of options that control the interaction of the user's terminal with other SQL commands.
+
+SET:
+--------
+It establishes an aspect of the SQL*Plus environment for our current session, such as:
+ setting the display width for NUMBER data 
+ setting the display width for LONG data
+ seting the number of characters per line 
+ setting the number of lines per page
+ enabling or disabling the printing of column headings 
+Syntax:
+SET system_variable value
+where system_variable value represents a system variable followed by a value as shown below:
+
+1) AUTO[COMMIT] {OFF|ON|IMM[EDIATE]}
+Controls when ORACLE commits pending changes to the database. 
+Eg:
+SQL>
+
+
+ON commits pending changes to the database after ORACLE executes each SQL command or PL/SQL block. OFF suppresses automatic committing, so that we must commit changes manually (for example, with the SQL command COMMIT). IMMEDIATE functions in the same manner as the ON option.
+
+2) ECHO {OFF|ON}
+Controls whether the START command lists each command in a command file as the command is executed. 
+Eg:
+SQL>
+
+
+ON lists the commands; OFF suppresses the listing.
+
+3) FEED[BACK] {n|OFF|ON}
+Displays the number of records returned by a query when a query selects at least n records. 
+Eg:
+SQL>
+
+ON or OFF turns this display on or off. Turning feed back ON sets n to 1. Setting feedback to 0 is equivalent to turning it OFF.
+
+4) HEA[DING] {OFF|ON}
+Controls printing of column headings in reports.
+Eg:
+SQL>
+
+
+ ON prints column headings in reports; OFF suppresses column headings.
+
+5) LINES[IZE] {80|n}
+Sets the total number of characters that SQL*Plus displays on one line before beginning a new line. 
+Eg:
+SQL> 
+
+It also controls the position of centered and right-aligned text in TTITLE and BTITLE. We can define LINESIZE as a value from 1 to a maximum that is system dependent. 
+
+6) NULL text
+Sets the text that represents a null value in the result of a SQL SELECT command. 
+Eg:
+SQL> 
+
+
+NULL without text displays the default for null values—a blank for embedded null values and nothing for trailing null values. Use the NULL clause of the COLUMN command to override the setting of the NULL variable for a given column.
+
+7) NUMF[ORMAT] format
+Sets the default format for number display. 
+Eg:
+SQL>
+
+Enter a number format for format. 
+
+8) NUM[WIDTH] {10|n}
+Sets the default width for numbers.
+Eg:
+SQL>
+
+
+9) PAGES[IZE] {14|n}
+Sets the number of lines from the top title to the end of the page.
+Eg:
+SQL>
+
+
+For reports printed on paper 11 inches long, a value of 54 (plus a NEWPAGE value of 6) leaves one inch margins above and below the output.
+
+10) SERVEROUT[PUT] {OFF|ON} 
+Controls whether to display the output (i.e., DBMS_OUTPUT.PUT_LINE) of stored procedures in SQL*Plus. 
+Eg:
+SQL>
+
+
+OFF suppresses the output; ON displays the output.
+
+11) SHOW[MODE] {BOTH|OFF|ON}
+Controls whether SQL*Plus lists the old and new settings of a SQL*Plus system variables, when we change the setting with SET command. 
+Eg:
+SQL>
+
+ON lists the settings; OFF suppresses the listing. BOTH functions in the same manner as ON.
+
+12) SQLCASE {MIX[ED]|LO[WER]|UP[PER]}
+Converts the case of SQL commands and PL/SQL blocks just prior to execution. 
+Eg:
+SQL>
+
+
+SQL*Plus converts all text within the command, including quoted literals and identifiers.
+
+13) SQLP[ROMPT] {SQL>|text} 
+Sets the SQL*Plus command prompt.
+Eg:
+SQL>
+	
+
+14) TI[ME] {OFF|ON}
+Controls the display of the current time. 
+Eg:
+SQL> 
+
+
+ON displays the current time before each command prompt. OFF suppresses the time display.
+
+15) UND[ERLINE] {-|c|ON|OFF}
+Sets the character used to underline column headings in SQL*Plus. 
+Eg:
+SQL> 
+
+ON or OFF turns underlining on or off without affecting the values of c.
+
+16) VER[IFY] {OFF|ON}
+Controls whether SQL*Plus lists the text of a command before and after SQL*Plus replaces substitution variables with values. 
+Eg:
+SQL>
+
+ON lists the text;OFF suppresses the listing.
+
+17) WRA[P] {OFF|ON}
+Controls whether SQL*Plus truncates the display of a data item, if it is too long for the current line width. 
+Eg:
+SQL> 
+
+OFF truncates the data item; ON allows the data item to wrap to the next line.
+--------------------------------------------------------------------------------------------------------------------------------
+SHOW:
+-----------
+The SHOW command is used to display the current setting of the various parameters that have established by the SET command.
+Syntax:
+Sho[w] parameter
+where parameter represents one of the following terms or clauses | system_variable
+ALL
+BTI[TLE]
+ERR[ORS] [{FUNCTION|PROCEDURE|PACKAGE|PACKAGE BODY|TRIGGER|VIEW} name] 
+LABEL 
+LNO
+PNO
+REL[EASE] 
+SPOO[L] 
+SQLCODE 
+TTI[TLE]
+USER 
+
+system_variable represents any system variable set by the SET command.
+
+ALL
+Lists the settings of all SHOW options.
+BTI[TLE]
+Shows the current BTITLE definition.
+LABEL
+Shows the security level for the current session.
+LNO
+Shows the current line number (the position in the current page of the display and/or spooled output).
+PNO
+Shows the current page number.
+REL[EASE]
+Shows the release number of ORACLE that SQL*Plus is accessing.
+SPOO[L]
+Shows whether output is being spooled.
+SQLCODE
+Shows the value of SQL.SQLCODE (for example, the SQL return code of the most recent operation).
+TTI[TLE]
+Shows the current TTITLE definition.
+USER
+Shows the username under which we are currently accessing SQL*Plus.
+--------------------------------------------------------------------------------------------------------------------------------
+Display Control Commands: 
+------------------------------
+1) TTI[TLE]
+Places and formats a specified title at the top of each report page, or lists the current TITILE definition.
+Syntax:
+TTI[TLE] \printspec [text\variable] ...] | [OFF|ON]
+
+2) BTI[TLE]
+Places and formats a specified title at the bottom of each report page, or lists the current BTITLE definition.
+Syntax:
+BTI[TLE] \printspec [text\variable\ ...] | [OFF|ON]
+
+where printspec represents one or more of the following clauses used to place and format the text:
+COL n 
+S[KIP] n 
+TAB n 
+LE[FT] 
+CE[NTER] 
+R[IGHT] 
+BOLD 
+FORMATchar
+
+Eg:
+SQL> 
+---------------------------------------------------------
+
+Break Report:
+---------------
+SQL> BREAK ON DEPTNO SKIP 1 ON JOB SKIP 1 ON DUPLICATES
+SQL> COMPUTE SUM OF SAL ON DEPTNO
+SQL> COMPUTE AVG OF SAL ON JOB
+SQL> SELECT DEPTNO,JOB,ENAME,SAL FROM EMP
+WHERE JOB IN ('CLERK','SALESMAN') AND DEPTNO IN (10,30)
+ORDER BY DEPTNO,JOB;
+
+
+
+
+
+
+Terms and Clauses:
+-----------------------------
+If we do not enter a printspec clause before the first occurrence of text, TTITLE left justifies the text. Enter TTITLE with no clauses to list the current TTITLE definition.
+
+text
+Represents the title text: Enter text in single quotes if we wish to place more than one word on a single line.
+
+variable
+Represents a user variable or any of the following system maintained values:
+SQL.LNO (current line number)
+SQL.PNO (current page number)
+SQL.RELEASE (current ORACLE release number)
+SQL.SQLCODE (current error code)
+SQL.USER (current username)
+
+To print one of these values, reference the appropriate variable in the title. We can format variable with the FORMAT clause.
+
+OFF
+Turns the title off (suppresses its display) without affecting its definition.
+
+ON
+Turns the title on (restores its display). When we define a top title, SQL*PLUS automatically sets TTITLE to ON.
+
+COL n
+Indents to column n of the current line (backward if column n has been passed). "Column" in this context means print position, not table column.
+
+S[KIP] n
+Skips to the start of a new line n times; if we omit n, one time; if we enter zero for n, backward to the start of the current line.
+
+TAB n
+Skips forward n columns (backward if we enter a negative value for n), "Column" in this context means print position, not table column.
+
+LE[FT], CE[NTER], and R[IGHT]
+Left-align, center and right-align data on the current line respectively. SQL*Plus aligns following data items as a group, up to the end of the printspec or the next LEFT, CENTER, RIGHT, or COL command. CENTER and RIGHT use the SET LINESIZE value to calculate the position of the data item that follows.
+
+BOLD
+Prints data in bold print. SQL*Plus represents bold print on our terminal by repeating the data on three consecutive lines.
+
+FORMAT char 
+Specifies a format model that determines the format of following data items, up to the next FORMAT clause or the end of the command. The format model must be a char constant such as A10 or $999 and not a variable.
+--------------------------------------------------------------------------------------------------------------------------------
+1) COLUMN
+Specifies display attributes for a given column, such as;
+- text for the column heading 
+- alignment of the column heading
+- format for NUMBER data 
+- wrapping of column data
+Also lists the current display attributes for a single column or all columns.
+Syntax:
+COL[UMN] [{column|expr} [option ...] ]
+{column|expr}
+Identifies the data item (typically, the name of a column) in a SQL SELECT command to which the column command refers. If we use an expression in a COLUMN command, we must enter expr exactly as it appears in the SELECT command. If the expression in the SELECT command is a+b, for example, we cannot use b+a or (a+b) in a COLUMN command to refer to the expression in the SELECT command.
+
+2) ALI[AS]
+Assigns a specified alias to a column, which can be used to refer to the column in BREAK, COMPUTE, and other COLUMN commands.
+
+3) CLE[AR]
+Resets the display attributes for the column to default values.
+
+4) COLOR {color|color_variable)
+Is described in the SQL Graph User's Guide.
+
+5) FOR[MAT] format
+Specifies the display format of the column. The format specification must be a text constant such as A10 or $9,999 and not a variable.
+
+6) NUMBER Columns 
+A NUMBER column's width defaults to the value of SET NUMWIDTH.
+
+7) LIST
+Lists one or more lines of the buffer
+Syntax:
+L[IST] [*|n|LAST [*|n|m|LAST]]
+*		Lists the current line
+n		Lists line n
+LAST		Lists the Last line
+n m		List lines n through m
+* n      		List lines current line through n
+LAST 		List lines current line through LAST
+n *      	 	List lines n through the current line
+
+8) CHANGE 
+Changes text on the current line in the buffer
+Syntax:
+C[HANGE]/old/new
+old       Represents the text we wish to change.
+new     Represents the with which we wish to replace old.
+
+9) INPUT
+Adds one or more new lines of text after the current line in the buffer.
+Syntax:
+I[NPUT] [text]
+text      Represents the text we wish to add.
+To add single line, enter the text of the line after the command INPUT. To add several lines, enter INPUT with no text. INPUT prompts us for each line. To leave INPUT enter a null line.
+
+10) DEL 
+Deletes the current line of the buffer
+Syntax
+DEL
+This command makes the following line of the buffer (if any) the current line.
+
+11) APPEND
+Adds specified text to the end of the current line in the buffer.
+Syntax:
+A[PPEND] text
+text      Represents the text we wish to append.
+
+12) SAVE
+Saves the contents of the buffer in a host operating system file.
+Syntax:
+SAV[E]  file_name[.ext] [CREATE|REPLACE|APPEND]
+file name[.ext] Specifies the command file in which we wish to save the buffer's contents. If we do not specify an extension, SQL*Plus assumes the default command file extension.
+CREATE  Creates the file if the file does not exist.
+REPLACE  Replaces the contents of an existing file. If the file does not exist, REPLACE creates the file.
+APPEND  Adds the contents of the buffer to the end of the file we specify.
+
+13) GET
+Loads a host operating system file into the buffer.
+Syntax:
+GET file_name[.ext] [LIST|NOLIST]
+file_name[.ext]  Represents the file we wish to load.
+LIST  Lists the contents of the file.
+NOLIST	Suppresses the listing.
+
+14) RUN 
+Lists and executes the SQL command or PL/SQL block currently stored in the SQL buffer.
+Syntax:
+R[UN]
+
+15) CLEAR
+Resets or erases the current value or setting for the specified option.
+Syntax:
+CL[EAR] option
+where option represents one of the following clauses:
+BRE[AKS]  Removes the break definition set by the BREAK command.
+BUFF[ER]  Clears text from the buffer.
+COL[UMNS]  Resets column display attributes set by the COLUMN command to default.
+COMP[UTES]  Removes all COMPUTE definitions set by the COMPUTE command.
+SCR[EEN]  Clears our screen.
+
+16) SPOOL
+Stores query results in an operating system file and, optionally, sends the file to a default printer. Also lists the current spooling status.
+Syntax:
+SPO[OL] [file_name[.ext]|ON|OFF]
+
+SPOOL uses a default extension .LST or .LIS on most operating systems.
+
+ON	Starts spooling and sends the file to host computer's standard printer.
+OFF	Stops spooling.
+
+--------------------------------------------------------------------------------------------------------------------------------
+NUMBER FORMATS:
+-------------------------------
+Element		Example(s)     	Description
+9		9999		Determines the display width by the number of digits entered. 
+				Does not display leading zeroes.
+0		0999		Displays leading zeroes.
+$		$9999		prefixes a dollar sign to a value.
+B		B9999		Displays a zero value as blank.
+MI		9999MI	Displays "-" after a negative value.
+P R		9999PR	Displays a negative value in angle brackets. 
+comma		9,999		Displays a comma in the position indicated. 
+period		99.99		Aligns the decimal point in the position indicated.
+V		999V99	Multiplies value by l0n, where n is the number of "9's" after the 
+				“V."
+EEEE		9.999EEEE     Displays in scientific notation (format must contain exactly 
+				four "E's").
+DATE		DATE		Displays value as a date in MM/DD/YY format; used to format 
+				NUMBER columns that represent Julian dates.  
+ON|OFF			Controls the status of display attributes for a column. OFF 	
+disables the attributes for a column without affecting the attributes' definition. ON reinstates the attributes.
+
+WRA[PPED]| WOR[D_WRAPPED1|TRU[NCATED] Specifies how SQL*Plus will treat a CHAR string that is too wide for a column. WRAPPED wraps the end of the string to the next line. WORD_WRAP functions similarly to WRAPPED, but moves an entire word to the next line rather than splitting the word between two lines. TRUNCATED truncates the string at the end of the first line of display.
+SQL> COLUMN SAL FORMAT $9,999,990.99
+To assign the alias NET to a column containing a long expression, to display the result in a dollar format, and to display <NULL> for null values, we might enter:
+SQL> COLUMN S AL+COMM+-BONUS-EXPENSES-INS-T AX ALIAS
+NET SQL> COLUMN NET FORMAT $9,999,999.99 NULL '<NULL>'
+Note: that the example divides this column specification into two commands. The first defines the alias NET, and the second uses NET to define the format
+SQL* PLUS BUFFER COMMANDS
+--------------------------------------------------------------------------------------------------------------------------------
+Building a simple Break Report:
+---------------------------------------------
+A break report is a report where duplicate values are suppressed in the specified columns. Additionally, in the break report, a line is skipped every time a value changes in the break column
+BREAK
+Purpose
+Specifies where and how formatting will change in a report, such as:
+suppressing display of duplicate values for a given column 
+skipping a line each time a given column value changes 
+printing COMPUTEd figures each time a given column value changes or at the end of the report
+Syntax:
+BRE[AK] [ON report_element [action [action]]] ...
+where:
+ON column [action [action]]
+When we include action(s), specifies action(s) for SQL*Plus to take whenever a break occurs in the specified column A break is one of three events
+a change in the value of a column or expression 
+the output of a row 
+the end of a report
+When we omit action(s), BREAK ON column suppresses printing of duplicate values in column and marks a place in the report where SQL*Plus will perform the computation we specify in a corresponding COMPUTE command.
+report_element 	Requires the following Syntax
+{column/expr|ROW|REPORT}
+action 			Requires the following Syntax
+[SKI[P] nt[SKI[P]] PAGE]   [NODUP[LICATES]|DUP[LICATES]]
+SQL> BREAK ON DEPTNO SKIP PAGE ON JOB SKIP 1 –
+ON SAL SKIP 1
+The first ON clause represents the outermost break (in this case, ON DEPTNO) and the last ON clause represents the innermost break (in this case, ON SAL). SQL*Plus searches each row of output for the specified break(s), starting with the outermost break and proceeding—in the order we enter the clauses—to the innermost. In the example, SQL* PLUS searches for a change in the value of DEPTNO, then JOB, then SAL.
+ON expr[action [action]]
+When we include action(s), specifies action(s) for SQL*Plus to take when the value of the expression changes.
+When we omit action(s), BREAK ON expr suppresses printing of duplicate values of expr and marks a place in the report where SQL* Plus will perform the computation we specify in a corresponding COMPUTE command. 
+We can use an expression involving one or more table columns or an alias assigned to a report column in a SQL SELECT or SQL*Plus COLUMN command. If we use an expression in a BREAK command, we must enter expr exactly as it appears in the SELECT command. If the expres¬sion in the SELECT command is a+b, for example, we cannot use b+a or (a+b) in a BREAK command to refer to the expression in the SELECT command.
+ON ROW [action [action]]
+When we include action(s), specifies action(s) for SQL*Plus to take when a SQL SELECT command returns a row. The ROW break becomes the innermost break regardless of where we specify it in the BREAK com¬mand. We should always specify an action when we BREAK on a row.
+ON REPORT
+Marks a place in the report where SQL*Plus will perform the computation we specify in a corresponding COMPUTE command. Use BREAK ON REPORT in conjunction with COMPUTE to print grand totals or other "grand" computed values.
+The REPORT break becomes the outermost break regardless of where we specify it in the BREAK command.
+SKI[P]n
+Skips n lines before printing the row where the break occurred.
+[SKI[P]] PAGE
+Skips the number of lines that are defined to be a page before printing the row where the break occurred. The number of lines per page can be set via the PAGESIZE clause of the SET command. Note that PAGESIZE only changes the number of lines that SQL*Plus considers to be a page.
+Thus SKIP PAGE may not always cause a physical page break, unless we have also specified NEWPAGE 0.
+NODUP[LICATES]
+Prints blanks rather than the value of a break column when the value is a duplicate of the column's value in the preceding row.
+DUP[LICATES]
+Prints the value of a break column in every selected row.
+SQL> BREAK ON DEPTNO SKIP 1 ON JOB SKIP 1 DUPLICATES
+SQL> COMPUTE SUM OF SAL ON DEPTNO
+SQL> COMPUTE AVG OF SAL ON JOB
+SQL> SELECT DEPTNO,ENAME,JOB,SAL FROM EMP
+ WHERE JOB IN ('CLERK', 'SALESMAN')
+ AND DEPTNO IN (10, 30)
+ ORDER BY DEPTNO, JOB;
+
+The following output results:
+----------------------------------------
+DEPTNO         JOB		ENAME	SAL
+10		CLERK	MILLER	1300
+				*********		
+				avg		1300
+				**********		
+				sum		1300
+30		CLERK	JAMES	1045
+				*********		
+				avg		1045
+SALESMAN	ALLEN	1760
+SALESMAN	MARTIN	1375
+SALESMAN	TURNER	1650
+SALESMAN	WARD 	1375
+							*********		
+				avg		1540
+						**********		
+				sum		7205
+
+--------------------------------------------------------------------------------------------------------------------------------
+Using Pseudocolumns:
+---------------------------------
+A pseudocolumn behaves like a table column, but is not actually stored in the table. We can select from pseudocolumns, but we cannot insert, update, or delete their values. 
+- CURRVAL
+- NEXTVAL
+- LEVEL
+- ROWID
+- ROWNUM
+
+CURRVAL
+returns the current value of a sequence.
+
+NEXTVAL
+increments the sequence and returns the next value. We must qualify CURRVAL and NEXTVAL with the name of the sequence: sequence.CURRVAL or sequence.NEXTVAL.
+
+LEVEL
+For each row returned by a hierarchical query, the LEVEL returns 1 for a root node, 2 for a child of a root, and so on. A root node is the highest node within an inverted tree. A child node is any non-root node. A parent node is any row that has children. A leaf node is any row without children.
+
+ROWNUM
+For each row returned by a query, the ROWNUM returns a number indicating the order in which, Oracle selects the row from a table or set of joined rows. The first row selected has a ROWNUM of 1, the second has 2, and so on.
+
+ROWID
+For each row in the database, the ROWID returns a row's address. ROWID values contain information necessary to locate a row: 
+- which data file (first file is 1)
+- which data block in the data file
+- which row in the data block (first row is 0)
+--------------------------------------------------------------------------------------------------------------------------------

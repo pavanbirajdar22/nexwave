@@ -1,0 +1,16 @@
+package algorithms.warmup;
+import java.util.Scanner;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int sum=0,temp;
+        int min=Integer.MAX_VALUE;
+        int max=Integer.MIN_VALUE;
+        for(int arr_i=0; arr_i < 5; arr_i++){
+             = in.nextInt();
+            ig
+        }
+    }
+}

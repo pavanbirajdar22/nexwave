@@ -1,0 +1,14 @@
+ Working with Integrity Constraints:
+----------------------------------------------
+An integrity constraint is a rule that restricts the values for one or more columns in a table.
+
+Constraints are broadly classified into three types: 
+1) Domain Integrity Constraints
+	- Not Null
+	- Check
+2) Entity Integrity Constraints
+	- Unique
+	- Primary Key	(
+3) Referential Integrity Constraints
+	- References
+	- Foreign Key

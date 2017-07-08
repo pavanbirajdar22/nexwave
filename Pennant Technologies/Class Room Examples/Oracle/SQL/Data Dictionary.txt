@@ -1,0 +1,5 @@
+Data Dictionary:
+------------------
+The data dictionary is a comprehensive set of tables and views owned by the DBA users SYS and SYSTEM, which activates when ORACLE is initially installed, and is a central source of information for the ORACLE RDBMS itself and for all users of ORACLE. 
+The tables are automatically maintained by Oracle, and hold a set of tables and views, containing information about database objects, user’s privileges events and use.
+The data dictionary is automatically created when the database is created. Oracle updates the data dictionary in response to every Data Definition Language.	

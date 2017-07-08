@@ -1,0 +1,37 @@
+order by clause
+
+	asc
+	desc
+
+	select * from emp order by empno desc;	
+	select * from emp  where job like 'CLERK' order by empno desc;
+
+
+
+GROUP BY clause
+
+groups the selected rows based on the value of expr for each row and returns a single row of summary information for each group.
+
+SELECT DEPTNO, MIN(SAL), MAX(SAL) FROM EMP WHERE JOB = 'CLERK' GROUP BY DEPTNO;
+
+SELECT * FROM EMP WHERE JOB = 'CLERK' GROUP BY DEPTNO;
+
+select empno,sum(sal) from emp group by empno;
+
+
+select empno,sum(sal) from emp group by rollup (empno);
+
+select empno,job,sum(sal) from emp group by rollup (empno,job)
+
+select empno,job,sum(sal) from emp group by (empno,job)
+
+select empno,job,sum(sal) from emp group by cube (empno,job)
+
+select grouping (empno),empno,sum(sal) from emp group by rollup (empno)
+
+
+HAVING
+
+restricts the groups of rows returned to those groups for which the specified condition is TRUE. If we omit this clause, Oracle returns summary rows for all groups.
+
+SELECT DEPTNO, MIN(SAL), MAX(SAL) FROM EMP WHERE JOB='CLERK' GROUP BY DEPTNO HAVING MIN(SAL)>1000;

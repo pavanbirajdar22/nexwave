@@ -1,0 +1,46 @@
+package com;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+
+class Pair {
+	int p1, p2;
+
+	public Pair(int p1, int p2) {
+		super();
+		this.p1 = p1;
+		this.p2 = p2;
+	}
+
+}
+
+public class Solution {
+	String super_digit(String s){
+        if(s.length()==1){
+            return s;
+        }
+        int new_dig = 0;
+        for(int i=0;i<s.length();i++){
+            int dig = ((int)s.charAt(0)-48);
+            new_dig+=dig;
+        }
+        super_digit(Integer.toString(new_dig));
+    }
+    String helper(String s,int k){
+        if(s.length()==1){
+            if(s.length()*k){
+                
+            }
+        }
+        int new_dig = 0;
+        for(int i=0;<s.length();i++){
+            int dig = ((int)s.charAt(0)-48);
+            new_dig+=dig;
+        }
+        return super_digit(newnew_dig*k);
+    }
+    public static void main(String[] args) {
+        
+    }
+}

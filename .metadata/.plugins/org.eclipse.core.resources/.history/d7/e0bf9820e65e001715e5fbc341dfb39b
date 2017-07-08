@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Jul 2, 2017 10:49:16 AM by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="classicmodels" dynamic-insert="false" dynamic-update="false" mutable="true" name="Orderdetails" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="orderdetails">
+        <composite-id class="OrderdetailsId" mapped="false" name="id" unsaved-value="undefined">
+            <key-property name="orderNumber" type="int">
+                <column name="orderNumber"/>
+            </key-property>
+            <key-property name="productCode" type="string">
+                <column length="15" name="productCode"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="Orders" embed-xml="true" fetch="select" insert="false" name="orders" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column name="orderNumber" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="Products" embed-xml="true" fetch="select" insert="false" name="products" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column length="15" name="productCode" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="quantityOrdered" optimistic-lock="true" type="int" unique="false">
+            <column name="quantityOrdered" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="priceEach" optimistic-lock="true" type="big_decimal" unique="false">
+            <column name="priceEach" not-null="true" precision="10"/>
+        </property>
+        <property generated="never" lazy="false" name="orderLineNumber" optimistic-lock="true" type="short" unique="false">
+            <column name="orderLineNumber" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

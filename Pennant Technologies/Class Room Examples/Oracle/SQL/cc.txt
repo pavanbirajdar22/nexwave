@@ -1,0 +1,1 @@
+connect sys/change_on_install AS sysdba

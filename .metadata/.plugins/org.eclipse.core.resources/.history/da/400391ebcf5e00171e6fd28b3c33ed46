@@ -1,0 +1,5 @@
+package com.hib.hibfactory;
+
+public class HibSessionFactory {
+
+}

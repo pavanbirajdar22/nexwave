@@ -1,0 +1,30 @@
+
+class Widget {
+	public synchronized void doSomething() {
+		while (1 == 1) {
+			//
+		}
+	}
+}
+
+class LoggingWidget extends Widget {
+	public synchronized void doSomething() {
+		System.out.println(toString() + ": calling doSomething");
+		super.doSomething();
+	}
+}
+
+public class Main {
+
+	public static void main(String[] args) {
+		Widget w = new Widget();
+		LoggingWidget l = new LoggingWidget();
+		Thread t1 = new Thread(() -> {
+			w.doSomething();
+		});
+		Thread t2 = new Thread(() -> {
+		});
+
+	}
+
+}

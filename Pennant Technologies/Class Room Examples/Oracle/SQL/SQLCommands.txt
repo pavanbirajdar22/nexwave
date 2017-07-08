@@ -1,0 +1,282 @@
+DDL Commands
+--------------------------	
+	create, alter, drop and Truncate.
+
+CREATE: Using Create command we can create the dbase objects.
+
+Syntax of Create :
+-----------------------
+Create table <table_name> (column_name1 datatype,column_name2 datatype,...);
+
+Ex:- Create table student (sno number(3),
+Sname varchar2(10),cor varchar2(5),
+fee number(9,2),doj date);
+
+DataTypes:
+
+DATATYPE NAME 		RANGE
+-------------------------		-----------
+CHAR 			255
+NUMBER			10/20
+NUMBER(9,2)
+ THESE DATATYPE FOR DECIMAL VALUES.
+VARCHAR		2000 
+IT IS THE ALPHANUMERIC DATATYPE.
+
+VARCHAR2		2000-4000
+ 	
+DATE		'day-month-year'
+		7 bytes
+
+
+	
+ALTER:-
+----------
+ALTER IS THE DDL COMMAND WHICH IS USED TO MANIPULATE THE EXISTING DBASE OBJECT (TABLE).
+
+SYNTAX:-
+
+ALTER TABLE <TABLE_NAME> ADD (OR) MODIFY (OR) DROP COLUMN;
+
+ADD
+-----
+ USING ADD WITH ALTER WE CAN ADD THE NEW COLUMN FOR THE DBASE OBJECT CALLED TABLE.
+syntax:
+---------
+alter table <table_name> add <column_name1> datatype,<column_name2> datatype,... ;
+
+Ex:- alter table student_3 add result varchar(2);
+
+modify:
+-----------
+ USING Modify WITH ALTER command WE CAN change  THE size of COLUMN(Increae/decrease)  FOR THE DBASE OBJECT CALLED TABLE.
+
+Note: if you want to decrease the size of the column then first remove the data from the column then apply alter command.
+
+Syntax:-
+alter table <table_name> modify (column_name datatype,...);
+Ex:- alter table student_3 modify (sname varchar2(15));
+
+Drop:
+-------
+	Using Drop command we can drop the column from the dbase object called Table.
+Syntax:
+alter table <table_name> drop column column_name,..;
+
+Ex:- alter table student_3 drop column fee;
+
+
+Drop (DDL):
+------
+	Drop is the DDL command which is used to remove the dbase object.
+	When are working with table, it remove the structure of the table with information.
+
+Syntax:- Drop table <table_name>;
+Ex:-	drop table student_3;
+
+Truncate:-
+--------------
+	These command removers all the records permanently from the dbase object called Table.
+Syntax:-
+	Truncate table <table_name>;
+
+DML:- (Data Manipulation Language).
+------
+	Insert, update and delete.
+
+Insert:-
+--------	Using insert command we can insert the records into the dbase object called Table.
+
+Syntax:-
+1. insert into <table_name> values (data1,data2,...);
+ex:insert into sri values(103,'ranga','steno');
+2. for specified column inserting the data.
+insert into <table_name> (col1,col2,col3) values (data1,data2,data3);
+ ex:insert into sri (eno,ename,job) values(103,'ranga','steno');
+3. At exection of insert command data is supplied.
+Insert into <table_name>(sno,sname,cor,doj) values  (&no,'&name','&course','&doj'); 
+ex:insert into sri (eno,ename,job) values(&eno,'&ename','&job')
+4. Insert into <table_name1> select * from <table_name2>
+    Inserting the Record from table2 to table1.
+
+Delete:-
+---------	Delete is the dml command which is used to remove the record from the dbase called table.
+
+Syntax:-
+	delete from <table_name>;
+	These command removes all the records from the table.
+
+syntax:- delete from <table_name> where clause;
+
+where clause:	where column_name=data
+
+Using this command we can delete only specified records.
+
+ex: delete from sri where eno=101;
+
+Operator:-
+------------
+Arithematic:- + * - /
+Logical      :- and or not
+
+AND OPERATER:- IT COMPARES B/W THE COLUMN OF THE SINGLE RECORD.
+OR :- IT COMPARES B/W THE ROWS.
+
+UPDATE:-
+------------
+This is an dml command which is used to modify the existing information with in the dbase object called table.
+
+Syntax:
+	update <table_name> set <column_name>=data;
+This command all the records are updated.
+ex: update sri set sal=2500;
+
+
+Syntax:-  update <table_name> set <column_name>=data where clause;
+
+where clause: 
+where column_name=data;
+
+ex: update  sri set sal=4500 where eno=103
+
+Updating Multiple columns
+--------------------------------
+update <table_name> set <col1>=data,<col2>=data where col_name=data;
+
+ex: update sri set sal=5000,job='manager' where eno=105;
+
+
+DCL:-	 Data Control Language.
+-------
+
+
+	Grant and Revoke
+
+Using Grant command we can give the permission to othrer user to access the dbase object called Table.
+
+Permission:-	insert, update, delete and select.
+----------------
+Syntax:-
+grant permission on <user_name>.<table_name> to <user_name>;
+
+Ex: grant insert on scott.emp to opel;
+Ex: grant insert,update on scott.emp to scott1;
+Ex: grant insert,update,delete on scott.emp to scott1;
+Ex: grant select on scott.emp to scott1;
+Ex:- grant all previleges on scott.emp to scott1;
+
+To create user:
+---------------------
+create user <user_name> identified by <pwd>;
+
+Example:  scott1
+------------
+select * from scott.emp;
+insert into scott.emp values (data);
+delete from scott.emp;
+update scott.emp set col=data where col=data;
+
+Coping the structure of one table to other table:
+------------------------------
+Syntax:
+
+create table <New_table> as select * from <exising _table> where col_name=0;
+
+Coping the structure of one table to other table with information
+------------------------------
+create table <New_table> as select * from <existing _table>;
+
+Coping the structure of one table to other table with specified columns
+------------------------------
+create table <New_table> as select col_name1,col_name2 from <exising _table>;
+
+REVOKE:	
+--------------	It is an dcl command which is used to remove the permission from user.
+
+Syntax:-
+revoke permission on <table_name> from <user_name>;
+
+Ex:- revoke all priveleges on scott.emp from opel;
+Ex:- revoke insert,delete on scott.emp from opel;
+Ex:- revoke select on scott.emp from opel;
+Ex:- revoke update on scott.emp from opel;
+
+
+TCL :- Transcation Control Language.
+-----
+Commit, Rollback and Savepoint.
+
+* Commit is an TCL command which used to commit(save) the transaction to the dbase table.
+  Syntax:-    sql> commit;
+
+*Rollback is an TCL command which is used to unsave the transaction to the dbase table.
+  Syntax:- Sql> rollback;
+              sql>rollback to <savepoint_filename>;
+
+*Savepoint is an TCL Command which is used to store the transaction into the file.
+	Later we can rollback the transaction which are stored in the savepoint, by rollback command.
+
+Syntax:- 	sql> savepoint <filename>;
+
+Ex:-
+
+SQL> select * from emp100;
+
+     EMPNO 	ENAME 	SAL 	JOB                   	DEPTNO
+---------- ------------------------- ---------- -------------------- ----------
+      1098 		Smith        2500 	clerk                         10
+      1078 		Jones       3000 	analyst                      20
+      1034 		Allen         5000 	Manager                   10
+
+SQL> commit;
+Commit complete.
+
+SQL> savepoint b;
+Savepoint created.
+
+SQL> insert into emp100 values(1045,'Allen',3000,'clerk',30);
+1 row created.
+
+SQL> select * from emp100;
+     EMPNO ENAME                   SAL 	JOB                    DEPTNO
+---------- ------------------------- ---------- -------------------- ----------
+      1045 	Allen                          3000 	clerk                        30
+      1098 	Smith                         2500 	clerk                        10
+      1078 	Jones                        3000 	analyst                     20
+      1034 	Allen                          5000 	Manager                  10
+
+SQL> savepoint a;
+Savepoint created.
+
+SQL>  update emp100 set sal=sal+1000;
+4 rows updated.
+
+SQL> select * from emp100;
+
+     EMPNO 	ENAME     SAL 	JOB                      DEPTNO
+---------- ------------------------- ---------- -------------------- ----------
+      1045 		Allen          4000 	clerk                        30
+      1098 		Smith         3500 	clerk                        10
+      1078 		Jones        4000 	analyst                     20
+      1034 		Allen          6000 	Manager                  10
+
+SQL> rollback to a;
+Rollback complete.
+
+SQL> select * from emp100;
+     EMPNO ENAME                   SAL 	JOB                      DEPTNO
+---------- ------------------------- ---------- -------------------- ----------
+      1045 	Allen                           3000 	clerk                        30
+      1098 	Smith                          2500 	clerk                        10
+      1078 	Jones                         3000 	analyst                     20
+      1034 	Allen                           5000 	Manager                  10
+
+SQL> rollback to b;
+Rollback complete.
+
+SQL> select * from emp100;
+     EMPNO ENAME                     SAL 	JOB                      DEPTNO
+---------- ------------------------- ---------- -------------------- ----------
+      1098 	Smith                           2500 	clerk                        10
+      1078 	Jones                          3000 	analyst                     20
+      1034 	Allen                            5000 	Manager                  10

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Jul 2, 2017 10:49:16 AM by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="classicmodels" dynamic-insert="false" dynamic-update="false" mutable="true" name="Orders" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="orders">
+        <id name="orderNumber" type="int">
+            <column name="orderNumber"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="Customers" embed-xml="true" fetch="select" insert="true" name="customers" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="customerNumber" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="orderDate" optimistic-lock="true" type="date" unique="false">
+            <column length="10" name="orderDate" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="requiredDate" optimistic-lock="true" type="date" unique="false">
+            <column length="10" name="requiredDate" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="shippedDate" optimistic-lock="true" type="date" unique="false">
+            <column length="10" name="shippedDate"/>
+        </property>
+        <property generated="never" lazy="false" name="status" optimistic-lock="true" type="string" unique="false">
+            <column length="15" name="status" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="comments" optimistic-lock="true" type="string" unique="false">
+            <column length="65535" name="comments"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="orderdetailses" optimistic-lock="true" sort="unsorted" table="orderdetails">
+            <key on-delete="noaction">
+                <column name="orderNumber" not-null="true"/>
+            </key>
+            <one-to-many class="Orderdetails" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

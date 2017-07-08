@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Jul 2, 2017 10:36:19 AM by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="classicmodels" dynamic-insert="false" dynamic-update="false" mutable="true" name="Payments" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="payments">
+        <composite-id class="PaymentsId" mapped="false" name="id" unsaved-value="undefined">
+            <key-property name="customerNumber" type="int">
+                <column name="customerNumber"/>
+            </key-property>
+            <key-property name="checkNumber" type="string">
+                <column length="50" name="checkNumber"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="Customers" embed-xml="true" fetch="select" insert="false" name="customers" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column name="customerNumber" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="paymentDate" optimistic-lock="true" type="date" unique="false">
+            <column length="10" name="paymentDate" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="amount" optimistic-lock="true" type="big_decimal" unique="false">
+            <column name="amount" not-null="true" precision="10"/>
+        </property>
+    </class>
+</hibernate-mapping>

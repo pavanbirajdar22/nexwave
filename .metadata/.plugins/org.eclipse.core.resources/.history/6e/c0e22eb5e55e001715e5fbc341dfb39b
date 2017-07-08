@@ -1,0 +1,10 @@
+
+public class App {
+
+	public static void main(String[] args) {
+		OfficesHome officesHome = new OfficesHome();
+		Offices office = new Offices();
+		officesHome.persist(office);
+	}
+
+}

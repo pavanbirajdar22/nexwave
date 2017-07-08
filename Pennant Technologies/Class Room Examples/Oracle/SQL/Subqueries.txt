@@ -1,0 +1,52 @@
+Sub Queries:
+---------------
+Sub Queries are an extremely powerful feature of the SQL language. SubQuery is a query, that is defined in another query. Generally, the Subqueries are used to retrieve data from one table by using the data from another query. To include a subquery in a SELECT statement, simply enclose the subquery in parentheses. Subqueries may be used wherever expressions are allowed. The innermost query will be executed first and the outermost last.
+
+Examples:
+--------------
+1) Displaying the employees who are working at New York. 
+SQL> SELECT * FROM EMP WHERE DEPTNO=(SELECT DEPTNO FROM DEPT WHERE LOC='NEW YORK');
+
+2) Displaying the employees who are getting the maximum salary.
+SQL> SELECT * FROM EMP WHERE SAL=(SELECT MAX(SAL) FROM EMP);
+
+3) Displaying the employees who are getting the minimum salary.
+SQL> SELECT * FROM EMP WHERE SAL=(SELECT MIN(SAL) FROM EMP);
+
+4) Displaying the employees who are getting the third highest salary.
+SQL> SELECT * FROM EMP WHERE SAL=(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP where sal<(SELECT MAX(SAL) FROM EMP)));  
+
+5) Displaying the employees who are getting the second lowest salary.
+SQL> SELECT * FROM EMP WHERE SAL=(SELECT MIN(SAL) FROM EMP WHERE SAL>(SELECT MIN(SAL) FROM EMP)); 
+
+6. Displaying the employees who are working as Clerks.
+SQL> SELECT * FROM EMP WHERE JOB IN (SELECT JOB FROM EMP WHERE JOB LIKE 'CLERK');
+
+7. Displaying the employees who are working in deptno=10 and as Managers.
+SQL> SELECT * FROM EMP WHERE DEPTNO=10 AND JOB IN (SELECT JOB FROM EMP WHERE JOB LIKE 'MANAGER');
+
+8. Displaying the employees whose salaries greater than the Manager salary.
+SQL> SELECT * FROM EMP WHERE SAL>(SELECT MAX(SAL) FROM EMP WHERE JOB IN ('MANAGER'));
+
+9. Displaying the average salary of managers.
+SQL> SELECT AVG(SAL) FROM EMP WHERE JOB IN (SELECT JOB FROM EMP WHERE JOB LIKE 'MANAGER');
+
+10. Displaying the managers whose salaries greater than their average salary.
+SQl> SELECT * FROM EMP WHERE JOB LIKE 'MANAGER' AND SAL>(SELECT AVG(SAL) FROM EMP WHERE JOB LIKE 'MANAGER');
+
+11. Displaying the employee who are working in deptno=10 and 20 as clerks.
+SQL> SELECT * FROM EMP WHERE DEPTNO=10 AND  JOB IN('CLERK') OR DEPTNO=20 AND JOB IN (SELECT JOB FROM EMP WHERE JOB LIKE ('CLERK'));
+
+12. Displaying all the managers working in New York, Chicago. 
+SQL> SELECT EMP.JOB,DEPT.LOC ,DEPT.DEPTNO FROM EMP,DEPT WHERE EMP.JOB LIKE 'MANAGER' AND DEPT.LOC IN (SELECT DISTINCT(DEPT.LOC) FROM DEPT WHERE DEPT.LOC IN ('NEW YORK', 'CHICAGO'));
+
+13. Displaying the employee records who are working as managers and  where they are working.
+SQL> SELECT ENAME, DISTINCT(EMP.JOB),DEPT.LOC FROM EMP,DEPT WHERE EMP.JOB LIKE 'MANAGER' AND DEPT.LOC IN (SELECT DISTINCT(DEPT.LOC) FROM DEPT);
+
+14. Displaying the managers who have joined prior to their employees.
+SQL> 
+
+15. Displaying the managers whose salary is greater than the average of the salary.
+
+
+select * from(select * from emp where sal is not null order by sal desc)where rownum<=10

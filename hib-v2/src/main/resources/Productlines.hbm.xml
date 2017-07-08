@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Jul 2, 2017 10:36:19 AM by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="classicmodels" dynamic-insert="false" dynamic-update="false" mutable="true" name="Productlines" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="productlines">
+        <id name="productLine" type="string">
+            <column length="50" name="productLine"/>
+            <generator class="assigned"/>
+        </id>
+        <property generated="never" lazy="false" name="textDescription" optimistic-lock="true" type="string" unique="false">
+            <column length="4000" name="textDescription"/>
+        </property>
+        <property generated="never" lazy="false" name="htmlDescription" optimistic-lock="true" type="string" unique="false">
+            <column length="16777215" name="htmlDescription"/>
+        </property>
+        <property generated="never" lazy="false" name="image" optimistic-lock="true" type="binary" unique="false">
+            <column name="image"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="productses" optimistic-lock="true" sort="unsorted" table="products">
+            <key on-delete="noaction">
+                <column length="50" name="productLine" not-null="true"/>
+            </key>
+            <one-to-many class="Products" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

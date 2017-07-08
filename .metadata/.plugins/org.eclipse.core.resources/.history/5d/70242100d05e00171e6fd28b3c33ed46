@@ -1,0 +1,16 @@
+package com.hib.dao;
+
+import com.hib.model.Employee;
+
+public class EmployeeDAO {
+	public void save(Employee employee) {
+		SessionFactory factory = HibSessionFactory.getSessionFactory();
+		Session session = factory.openSession();
+		session.getTransaction().begin();
+
+		session.save(product);
+
+		session.getTransaction().commit();
+		session.close();
+	}
+}

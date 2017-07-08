@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Jul 2, 2017 10:36:19 AM by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="classicmodels" dynamic-insert="false" dynamic-update="false" mutable="true" name="Products" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="products">
+        <id name="productCode" type="string">
+            <column length="15" name="productCode"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="Productlines" embed-xml="true" fetch="select" insert="true" name="productlines" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column length="50" name="productLine" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="productName" optimistic-lock="true" type="string" unique="false">
+            <column length="70" name="productName" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="productScale" optimistic-lock="true" type="string" unique="false">
+            <column length="10" name="productScale" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="productVendor" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="productVendor" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="productDescription" optimistic-lock="true" type="string" unique="false">
+            <column length="65535" name="productDescription" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="quantityInStock" optimistic-lock="true" type="short" unique="false">
+            <column name="quantityInStock" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="buyPrice" optimistic-lock="true" type="big_decimal" unique="false">
+            <column name="buyPrice" not-null="true" precision="10"/>
+        </property>
+        <property generated="never" lazy="false" name="msrp" optimistic-lock="true" type="big_decimal" unique="false">
+            <column name="MSRP" not-null="true" precision="10"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="orderdetailses" optimistic-lock="true" sort="unsorted" table="orderdetails">
+            <key on-delete="noaction">
+                <column length="15" name="productCode" not-null="true"/>
+            </key>
+            <one-to-many class="Orderdetails" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

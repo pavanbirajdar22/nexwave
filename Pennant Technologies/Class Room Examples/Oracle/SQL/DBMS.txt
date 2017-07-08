@@ -1,0 +1,103 @@
+Introduction to DBMS (Database Management Systems):
+-------------------------------------------------------------------------
+Computers are designed to manipulate information in the form of data. Data are the facts and consists of numbers (Numeric data), text (Alphabetic data) or a combination of two (Alpha-Numeric data).
+
+A Database consists of all the files of an organization that is a collection of stored “Operational Data” used by the application systems of some particular enterprise. The “Operational Data” means a qualified data for a particular task.
+
+Database Management System gives us a way of gathering together specific pieces or lists of information that are relevant to us in our jobs or our lives and also it provides a way to store and maintain information in central place. 
+
+Advantages of Database Management Systems:
+• Data can be stored
+• Standards can be enforced
+• Security restrictions can be applied
+• Integrity can be maintained
+• Redundancy (repetition of data) can be reduced
+ 
+Database Management System involves four major components:
+• Data are the valid values used by the application systems for a particular purpose.
+• Hardware is the physical components to perform EDP (Electronic Data Processing).
+• Software is the collection of programs or applications to implement EDP. 
+• End-User is a person who uses the application program to produce his/her own results.
+
+Database Management System provides the following major services: 
+• Data Definition:
+It provides a method of defining and storing the data population.
+• Data Maintenance: 
+It maintains the population using a record for each item in the population, with fields containing particular information that describes that item.
+• Data Manipulation: It provides services that let the user insert, update, delete, and sort data in the database.
+• Data Display: 
+It optionally provides some methods of displaying the data for the user.
+• Data Integrity: 
+It provides one or more methods of ensuring that the data is accurate.
+
+DBMS Models: 
+-----------------
+A Database Model describes how the data are presented to the user and programmer for access. The database models can be classified into:
+• File Management System 
+• Hierarchical Database Management System 
+• Network Database Management System 
+• Relational Database Management System
+
+File Management System (FMS):
+==============================
+It is the easiest database model to understand, and is the only one that describes how the data are stored on disk. In this model, each field or data item is stored sequentially on disk in one large file. Simplicity is only the advantage of this model.
+
+Disadvantages:
+==============
+• There is no indication of relationship between the various items other than the storage sequences.
+• All the field values have to be checked by the application program prior to storing on the disk. 
+• There is no method provided for searching a particular item in a database. It doesn't allow changes to the database structure easily.
+           • It has certain restrictions with data integrity.
+
+Hierarchical Database Management System (HDBMS):
+===================================================
+In this model, data are organized in tree structure that originates from a root. Each class of data is located at different levels along a particular branch that stems from the root. 
+The data structure at each class level is called a node, if no further branches follow, the last node in the series is called as leaf. This model relates entities by Parent/Child or Superior/Subordinate relationship.
+In this model there is always one and only one root node, which is usually owned by the system or DBMS. Pointers from the root lead down to the next level nodes, where the real database begins. This model permits two types of relationships:
+• One to One: An entity at one level is related to one entity at the next level.
+• One to Many: An entity at one level is related to more entities at the next level.
+
+Disadvantages:
+===============
+• The structure of HDBMS cannot be altered without redesigning the whole structure.
+• It is not easy to change the definition of the class levels.
+• This model doesn't provide Many-One, Many-Many and Cross-relationships.
+
+Network Database Management System (NDBMS):
+================================================
+This model is similar to the hierarchical model, except that an entity can have more than one parent i.e., members can have more than one relationship, the concepts behind the Network Database Management System model originated in 1960s. The first written specifications for this model were released in 1971 by the Conference on Data System Language (CODASYL). 
+
+A Network Database Management System (NDBMS) relies on either straight-line or cyclical pointers to map out the relationships between the different data items. This model can also be used to describe more complex relationships.
+
+The flexibility of the Network Database Management System model in showing many-to-many relationships is its greatest strength. 
+
+Network databases are faster in performance, through the use of index pointers that lead directly to the first item in a set being created. 
+
+Disadvantages:
+===============
+• The flexibility of many-to-many relationships involves high cost. The inter relationships between the different sets can become extremely complex and difficult to map out. This can become a severe problem, as most NDBMS databases require the programmer to write the application code that traces out the different data paths like HDBMS. 
+-------------------------------------------------------------------------------------
+Relational Database Management System (RDBMS):
+In 1969 Dr.E.F.Codd introduced mathematical concept of relational sets to define a model for databases. The set consists of 12 rules to establish RDBMS. 
+
+The relational model abandons the concepts of parent-child relationships between different data items. Instead, the data are organized in logical mathematical sets in a tabular structure. 
+
+In a RDBMS, each data field becomes a column in a table and each record becomes a row in the table. 
+
+The RDBMS obviously has a number of advantages over the HDBMS and NDBMSs. The most important advantage is its complete flexibility in describing the relationships between the various data items. 
+
+The programmer defines the database by creating the tables and the relationship between the tables. The creation of new tables doesn't affect the other tables. 
+
+The major decision for a Relational database designer is the table definitions. In order to define tables we have to implement Normalization techniques.
+
+Normalization is a process, which eliminates the problem of data redundancy in the database design and builds a data model that supports different functional requirements and alternate database designs.
+
+• In RDBMS, the information of Database structure, such as table names, column names, column types ... are stored in a separate set of tables called as System tables or Data Dictionary.
+
+• In RDBMS, the tables can be created from scratch or as projections of existing tables, and old tables can be removed at will. It not only rebuilds the entire database structure but also represents an increase in the preservation of data integrity.
+
+• In RDBMS, searching process can be done speedily by creating an index on one or more columns in a table.
+
+• In the other database models, changes have to be made directly to the data itself, which can cause conflicts when multiple users are updating the same record. 
+
+The RDBMS treats every change or group of changes to the data as transaction, which it executes on a temporary copy of the table being altered. Changes don't become permanent, until the user of an application commits the changes to the database.

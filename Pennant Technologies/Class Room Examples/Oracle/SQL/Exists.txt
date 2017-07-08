@@ -1,0 +1,3 @@
+select ename,empno from emp where exists
+(select e.mgr from emp e where emp.empno = e.mgr);
+/

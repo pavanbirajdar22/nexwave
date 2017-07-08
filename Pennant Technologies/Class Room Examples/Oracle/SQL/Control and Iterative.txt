@@ -1,0 +1,102 @@
+Control and Iterative statements:
+----------------------------------------------
+IF Statement:
+Often, it is necessary to take alternative actions depending on circumstances. The IF statement lets us execute a sequence of statements conditionally. That is, whether the sequence is executed or not depends on the value of a condition. There are three forms of IF statements: IF-THEN, IF-THEN-ELSE, and IF-THEN-ELSIF.
+
+IF - THEN
+The simplest form of IF statement associates a condition with a sequence of statements enclosed by the keywords THEN and END IF (not ENDIF), as follows:
+Syntax:
+IF <condition> THEN
+statements...;
+END IF;
+
+The sequence of statements is executed only if the condition evaluates to TRUE. If the condition evaluates to FALSE or NULL, the IF statement does nothing. In either case, control passes to the next statement. 
+
+The second form of IF statement adds the keyword ELSE followed by an alternative sequence of statements, as follows:
+Syntax:
+IF <condition> THEN
+statements1;
+ELSE
+statements2; 
+END IF;
+
+The sequence of statements in the ELSE clause is executed only if the condition evaluates to FALSE or NULL. Thus, the ELSE clause ensures that a sequence of statements is executed. 
+
+The THEN and ELSE clauses can include IF statements. That is, IF statements can be nested.
+
+IF - THEN - ELSIF
+Sometimes we want to select an action from several mutually exclusive alternatives. The third form of IF statement uses the keyword ELSIF (not ELSEIF) to introduce additional conditions, as follows:
+Syntax:
+IF <condition1> THEN
+statements1;
+ELSIF <condition2> THEN
+statements2; 
+ELSE
+statements3; 
+END IF;
+
+If the first condition evaluates to FALSE or NULL, the ELSIF clause tests another condition. An IF statement can have any number of ELSIF clauses; the final ELSE clause is optional. Conditions are evaluated one by one from top to bottom. If any condition evaluates to TRUE, its associated sequence of statements is executed and control passes to the next statement. If all conditions evaluate to FALSE or NULL, the sequence in the ELSE clause is executed. 
+--------------------------------------------------------------------------------------------------------------------------------
+
+LOOP Statement:
+LOOP statement let us execute a sequence of statements multiple times. There are three forms of LOOP statements: LOOP, WHILE-LOOP, and FOR-LOOP.
+
+LOOP
+The simplest form of LOOP statement is the basic (or infinite) loop, which encloses a sequence of statements between the keywords LOOP and END LOOP.
+Syntax:
+LOOP
+statements...; 
+END LOOP;
+
+With each iteration of the loop, the sequence of statements are executed, then control resumes at the top of the loop. If further processing is undesirable or impossible, we can use the EXIT statement to complete the loop. We can place one or more EXIT statements anywhere inside a loop, but nowhere outside a loop.
+
+WHILE-LOOP
+The WHILE-LOOP statement associates a condition with a sequence of statements enclosed by the keywords LOOP and END LOOP.
+Syntax:
+WHILE condition LOOP
+statements...;
+END LOOP;
+
+Before each iteration of the loop, the condition is evaluated. If the condition evaluates to TRUE, the sequence of statements are executed, then control resumes at the top of the loop. If the condition evaluates to FALSE or NULL, the loop is bypassed and control passes to the next statement.
+
+The number of iterations depend on the condition and is unknown until the loop completes. Since the condition is tested at the top of the loop, the sequence might execute zero times. 
+
+FOR LOOP
+Whereas the number of iterations through a WHILE loop is unknown until the loop completes, the number of iterations through a FOR loop is known before the loop is entered. FOR loops iterate over a specified range of integers. The range is part of an "iteration scheme", which is enclosed by the keywords FOR and LOOP.
+Syntax:
+FOR counter IN [REVERSE] lowerbound .. higherbound LOOP
+statements...; 
+END LOOP;
+
+The range is evaluated when the FOR loop is first entered and is never re-evaluated. As the next example shows, the sequence of statements is executed once for each integer in the range. After each iteration, the loop counter is incremented.
+Eg:
+FOR i IN 1 .. 10 LOOP
+statements...;
+END LOOP;
+
+If the lower bound equals the higher bound, the sequence of statements is executed once. If the lower bound is larger than the upper bound, the sequence of statements is not executed and control passes to the next statement.
+Eg:
+FOR I IN REVERSE 1 .. 10 LOOP
+statements...;
+END LOOP;
+
+PL/SQL lets us determine the loop range dynamically at run time, as the following example shows:
+
+GOTO Statement
+The GOTO statement branches to a label unconditionally. The label must be unique within its scope and must precede an executable statement or a PL/SQL block. When executed, the GOTO statement transfers control to the labeled statement or block. In the following example, we go to an executable statement farther down in a sequence of statements:
+Syntax:
+GOTO label_name;
+Eg:
+BEGIN
+GOTO INSERT_ROW;
+<<INSERT_ROW>>
+INSERT INTO EMP VALUES ... 
+END;
+The label_name must proceed with an executable statement even NULL statement.
+To debug the last example, simply add the NULL statement, as follows:
+• The GOTO statement can branch to an enclosing block from the current block
+• The GOTO statement can not branch into IF statement, LOOP statement or sub block
+• The GOTO statement cannot branch from one IF statement clause to another
+• The GOTO statement cannot branch from an enclosing block into a sub block
+• The GOTO statement cannot branch out of a sub program
+• GOTO statement cannot branch from an exception handler into the currentblock

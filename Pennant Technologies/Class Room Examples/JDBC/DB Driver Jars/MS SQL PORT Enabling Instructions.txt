@@ -1,0 +1,11 @@
+It took me a while to sort this issue out, but you have to head into the SQL Server Configuration Manager application. When that's loaded, expand the [SQL Native Client 11.0 Configuration] > Client Protocols.
+
+Enable all three (Shared Memory, TCP/IP, and Named Pipes), if they aren't already. Then click on TCP/IP and ensure that the default port is 1433.
+
+If you have a 32bit system or version of SQL Server installed, do the same in the SQL Native Client 11.0 Configuration (32it) menu, enabling Shared Memory, TCP/IP, and Named Pipes and setting the default port to 1433.
+
+Then click open the [SQL Server Network Configuration] or (32bit if applicable), and select the [Protocols for "YOURSERVERNAME"]. Ensure again that Shared Memory, TCP/IP, and Named Pipes are all enabled.
+
+Then click on the [TCP/IP] Protocol Name, then select the [IP Addresses] tab at the top of the new popup window. For IP1 ensure that Active is YES; Enabled is YES (this is No by default, even if it is Active); and set the TCP Port to 1433 (tbh I don't know if you have to do this step, but I did and it worked!!); my TCP Dynamic Ports are set to 0 and I didn't change any of the IP addresses;
+
+I did the same thing for IP10, which has IP: 127.0.0.1, which is the local machine. I also scrolled down to the bottom of the page, and set IPAll TCP Ports to 1433, (dynamic ports is 49163). Then you need to Apply all changes, close the properties window, and click on SQL Server Services in SQL Server Configuration Manager, and restart all running Servers. This should do it :D

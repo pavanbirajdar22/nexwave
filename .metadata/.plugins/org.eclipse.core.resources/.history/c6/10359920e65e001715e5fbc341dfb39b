@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Jul 2, 2017 10:49:16 AM by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="classicmodels" dynamic-insert="false" dynamic-update="false" mutable="true" name="Offices" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="offices">
+        <id name="officeCode" type="string">
+            <column length="10" name="officeCode"/>
+            <generator class="assigned"/>
+        </id>
+        <property generated="never" lazy="false" name="city" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="city" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="phone" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="phone" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="addressLine1" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="addressLine1" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="addressLine2" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="addressLine2"/>
+        </property>
+        <property generated="never" lazy="false" name="state" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="state"/>
+        </property>
+        <property generated="never" lazy="false" name="country" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="country" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="postalCode" optimistic-lock="true" type="string" unique="false">
+            <column length="15" name="postalCode" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="territory" optimistic-lock="true" type="string" unique="false">
+            <column length="10" name="territory" not-null="true"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="employeeses" optimistic-lock="true" sort="unsorted" table="employees">
+            <key on-delete="noaction">
+                <column length="10" name="officeCode" not-null="true"/>
+            </key>
+            <one-to-many class="Employees" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

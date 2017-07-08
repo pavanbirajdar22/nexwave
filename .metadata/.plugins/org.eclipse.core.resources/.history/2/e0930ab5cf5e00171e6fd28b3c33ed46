@@ -1,0 +1,9 @@
+package com.hib.dao;
+
+import com.hib.model.Employee;
+
+public class EmployeeDAO {
+	public void save(Employee employee) {
+		
+	}
+}
